@@ -18,6 +18,9 @@
     "typegen": "tsc --declaration --noEmit false --outDir dist/typings/ --emitDeclarationOnly --declarationMap",
     "prepublish": "npm run typegen && npm run test && rollup -c --silent"
   },
+  "repository": {
+    "url": "https://github.com/Ortyommm/extended-js"
+  },
   "keywords": [
     "library"
   ],
