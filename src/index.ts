@@ -10,6 +10,7 @@ import extendLocalStorage from './core/extensions/extendLocalStorage'
 import { first, last } from './core/functions/arrayFunctions'
 import logger from './core/logger'
 export * as eMath from './core/eMath'
+export * from './core/helpers/dev'
 export { last, first }
 export { extendLocalStorage }
 export { logger }
