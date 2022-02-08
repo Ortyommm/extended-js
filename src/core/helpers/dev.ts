@@ -4,17 +4,19 @@ function devhook(): void {
   debugger
 }
 
-function mockFunction(fn: (...args: any[]) => any): IMockFunction {
+function extendedFunction(fn: (...args: any[]) => any): IMockFunction {
   const f: IMockFunction = function (...args: any[]) {
     f.calls++
-    f.args = args
-    f.subscribers.forEach((fn) => fn())
-    return fn(...args)
+    f.argsHistory.push(args)
+    f.lastArgs = args
+    f.subscribers.forEach((fn) => fn.call(f))
+    return fn.call(f, ...args)
   }
 
   f.calls = 0
-  f.args = []
+  f.argsHistory = []
   f.subscribers = []
+  f.lastArgs = []
   f.subscribe = (fn: () => any) => {
     f.subscribers.push(fn)
   }
@@ -25,9 +27,10 @@ function mockFunction(fn: (...args: any[]) => any): IMockFunction {
 interface IMockFunction {
   (...args: any[]): any
   calls: number
-  args: any[]
+  argsHistory: any[]
+  lastArgs: any[]
   subscribers: (() => any | void)[]
   subscribe: (fn: () => any) => void
 }
 
-export { devhook, mockFunction }
+export { devhook, extendedFunction }

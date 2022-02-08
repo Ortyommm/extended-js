@@ -1,4 +1,5 @@
-import { devhook, mockFunction } from '../src'
+import { extendedFunction } from '../src'
+import logger from '../src/core/logger'
 
 function render(): void {
   // devhook()
@@ -8,15 +9,16 @@ function render(): void {
   }
 }
 
-const testFn = mockFunction(() => {
-  console.log('test')
+const testFn = extendedFunction(function () {
+  console.log(this.calls)
 })
 
-testFn.subscribe(console.log)
+testFn.subscribe(function (x = 20) {
+  console.log(this.calls, x)
+})
 testFn(3)
 testFn(30)
-console.log(testFn.calls, testFn.args)
-import logger from '../src/core/logger'
+console.log(testFn.calls, testFn.lastArgs, testFn.argsHistory)
 logger.yellow('gi')
 logger('gi')
 
