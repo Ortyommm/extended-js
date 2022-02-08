@@ -1,6 +1,6 @@
 {
   "name": "@meyl_on/extended-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Library project",
   "author": "Artem Margaryan",
   "main": "dist/umd/extendedJs.js",
