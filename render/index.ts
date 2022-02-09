@@ -1,4 +1,4 @@
-import { extendedFunction } from '../src'
+import { createDebounce, extendedFunction } from '../src'
 import logger from '../src/core/logger'
 
 function render(): void {
@@ -22,4 +22,10 @@ console.log(testFn.calls, testFn.lastArgs, testFn.argsHistory)
 logger.yellow('gi')
 logger('gi')
 
+const fun = createDebounce(1000)
+fun(() => console.log('hi'))
+fun(() => console.log('hi2'))
+setTimeout(() => {
+  fun(() => logger('3000'))
+}, 3000)
 render()

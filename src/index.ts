@@ -8,6 +8,7 @@ import {
 } from './core/algorithms/binarySearch'
 import extendLocalStorage from './core/extensions/extendLocalStorage'
 import { first, last } from './core/functions/arrayFunctions'
+export * from './core/functions/decorators'
 import logger from './core/logger'
 export * as eMath from './core/eMath'
 export * from './core/helpers/dev'
